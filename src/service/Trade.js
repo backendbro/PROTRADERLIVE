@@ -1,37 +1,25 @@
-const Contract = require('../models/Contract')
+const Trade = require('../models/Trade')
 const UserModel = require('../models/UserModel')
 const uploadSingleFile = require('../config/cloudinary')
 
-class Contracts {
+class Trades {
 
-    async getContracts (req,res) {
+    async buyTrade (req,res) {
       
         const userId = req.user.id
         let user = await UserModel.findById(userId)
         if(!user){
             return res.status(404).json({user})
         }
-        
-        const contracts = await Contract.find({confirmed:"true"})
-        res.status(200).json({message:"DEPOSITS MADE", contracts})
-    }
 
-    async buyContracts (req,res) {
-       
-        const userId = req.user.id
-        let user = await UserModel.findById(userId)
-        if(!user){
-            return res.status(404).json({user})
-        }
-
-        const contract = await Contract.create(req.body)
-        res.status(200).json({message:"DEPOSIT MADE", contract})
+        const trade = await Trade.create(req.body)
+        res.status(200).json({message:"DEPOSIT MADE", trade})
     }
 
     async uploadProof(req,res){
       
         const userId = req.user.id
-        const depositId = req.params.id
+        const tradeId = req.params.id
         let user = await UserModel.findById(userId)
         if(!user){
             return res.status(404).json({user})
@@ -48,8 +36,8 @@ class Contracts {
             const uploadProofUpload = await uploadSingleFile(uploadProofPath)
             const uploadProofUrl = uploadProofUpload.url
            
-            const depositProof = await Contract.findByIdAndUpdate(depositId,  { depositImage:uploadProofUrl }, {new:true} )
-            res.status(200).json({message:"IMAGE UPLOADED", depositProof})
+            const tradeProof = await Trade.findByIdAndUpdate(tradeId,  { depositImage:uploadProofUrl }, {new:true} )
+            res.status(200).json({message:"IMAGE UPLOADED", tradeProof})
        } catch (error) {
         console.log(error)
        }
@@ -57,4 +45,4 @@ class Contracts {
     }
 }
 
-module.exports = new Contracts()
+module.exports = new Trades()

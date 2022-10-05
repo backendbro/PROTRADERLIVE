@@ -101,36 +101,14 @@
       color: #6B7280;
     }
 
-    .theSect p {}
 
-    .theSect a,
-    .theMain>ul>li>p>a,
-    .theFooter a {
+    .theMain>ul>li>p>a{
       color: #2E7DD7;
     }
 
-    .theFooter {
-      background-color: #F9FAFB;
-      padding-bottom: 10px;
-      padding-left: 10%;
-    }
+   
 
-    .theFooter p {
-      font-family: 'Sora';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 160%;
-      color: #6B7280;
-    }
 
-    .conDiv {
-      background-color: #EAF2FB;
-      height: 220px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
   </style>
 </head>
 
@@ -138,29 +116,18 @@
   <div class="headDiv">
     <div class="mailHead"><img
         src=""
-        alt="logo">COLLECT</div>
+        alt="logo">CopyTradingOptions</div>
   </div>
   <div class="theMain">
-    <p class="theName">Hello Collect User</p>
-    <p class="theContent">Enter the following code to log in to your account!</p>
+    <p class="theName">Hello CopyTradingOptions User</p>
+    <p class="theContent">Enter the following code to log in to your account: {{pin}}</p>
 
-    <p>{{pin}}</p>
-
-    <p class="theContent">Best</p>
-    <p class="theContent">The Collect Team</p>
+    <p class="theContent">Best, CopyTradingOptions Team</p>
+    
   </div>
-  <div class="theSect">
-    <p>Need help? <a href="">Contact our support team</a> or hit us up on Twitter <a href="">@Collect_HQ</a></p>
-    <p>Want to give us feedback? Let us know what you think on our <a href="">Feedback site</a></p>
-  </div>
-  <footer class="theFooter">
-    <div style="justify-content: flex-start;" class="mailHead"><img
-        src=""
-        alt="logo">COLLECT</div>
-    <p>Collect agency</p>
-    <p>Addresses</p>
+   
     <p>This email was intended for {{firstName}}. </p>
-  </footer>
+  
 </body>
 
 </html>

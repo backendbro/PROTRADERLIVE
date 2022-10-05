@@ -25,6 +25,7 @@ const Referral = require('./src/routes/Referral')
 const Services = require('./src/routes/AccountService')
 const Deposits = require('./src/routes/Deposits')
 const Contract = require('./src/routes/Contract')
+const Trade = require('./src/routes/Trade')
 
 app.use('/api/user', auth)
 app.use('/api/verify-id', verifyId)
@@ -33,6 +34,7 @@ app.use('/api/referral', Referral)
 app.use('/api/account-service', Services)
 app.use('/api/deposits', Deposits)
 app.use('/api/contract', Contract)
+app.use('/api/trade', Trade)
 
 app.use(notFound)
 

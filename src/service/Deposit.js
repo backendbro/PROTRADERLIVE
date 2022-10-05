@@ -1,6 +1,8 @@
 const Deposit = require('../models/Deposits')
 const UserModel = require('../models/UserModel')
 const uploadSingleFile = require('../config/cloudinary')
+const Contract = require('../models/Contract')
+const Trade = require('../models/Trade')
 
 class Deposits {
 
@@ -10,9 +12,14 @@ class Deposits {
         if(!user){
             return res.status(404).json({user})
         }
-        
+        const depositsArray = []
+
         const deposits = await Deposit.find({confirmed:"true"})
-        res.status(200).json({message:"DEPOSITS MADE", deposits})
+        const trade = await Trade.find({confirmed:"true"})
+        
+        depositsArray.push(deposits, contract, trade)
+
+        res.status(200).json({message:"DEPOSITS MADE", depositsArray})
     }
 
     async makeDeposits (req,res) {
