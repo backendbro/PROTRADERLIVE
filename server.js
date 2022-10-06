@@ -26,6 +26,7 @@ const Services = require('./src/routes/AccountService')
 const Deposits = require('./src/routes/Deposits')
 const Contract = require('./src/routes/Contract')
 const Trade = require('./src/routes/Trade')
+const Wallet = require('./src/routes/Wallet')
 
 app.use('/api/user', auth)
 app.use('/api/verify-id', verifyId)
@@ -35,6 +36,7 @@ app.use('/api/account-service', Services)
 app.use('/api/deposits', Deposits)
 app.use('/api/contract', Contract)
 app.use('/api/trade', Trade)
+app.use('/api/wallet', Wallet)
 
 app.use(notFound)
 
