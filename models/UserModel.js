@@ -32,7 +32,7 @@ const UserSchema = new Schema ({
     role:{
         type:String,
         enum:['admin', 'user'],
-        default:'admin'
+        default:'user'
     },
     currency:{
         type:String,
@@ -65,7 +65,7 @@ const UserSchema = new Schema ({
     },
     isVerifiedAcct:{
         type:Boolean,
-        default:false
+        default:false   
     },
     FACode:String,
     FACodeExp:Date,

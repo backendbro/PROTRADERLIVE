@@ -3,8 +3,8 @@ const dotenv = require('dotenv')
 
 const app = express()
 
-const connectDB = require('./src/database/database')
-const notFound = require('./src/middlewares/notFound')
+const connectDB = require('./database/database')
+const notFound = require('./middlewares/notFound')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
@@ -18,15 +18,17 @@ app.get('/', (req,res) => {
 })
 
 
-const auth = require('./src/routes/auth')
-const verifyId = require('./src/routes/verifyId')
-const withDraw = require('./src/routes/WithdrawalService')
-const Referral = require('./src/routes/Referral')
-const Services = require('./src/routes/AccountService')
-const Deposits = require('./src/routes/Deposits')
-const Contract = require('./src/routes/Contract')
-const Trade = require('./src/routes/Trade')
-const Wallet = require('./src/routes/Wallet')
+const auth = require('./routes/auth')
+const verifyId = require('./routes/verifyId')
+const withDraw = require('./routes/WithdrawalService')
+const Referral = require('./routes/Referral')
+const Services = require('./routes/AccountService')
+const Deposits = require('./routes/Deposits')
+const Contract = require('./routes/Contract')
+const Trade = require('./routes/Trade')
+const Wallet = require('./routes/Wallet')
+const Action = require('./routes/Action')
+const Trader = require('./routes/Trader')
 
 app.use('/api/user', auth)
 app.use('/api/verify-id', verifyId)
@@ -37,6 +39,8 @@ app.use('/api/deposits', Deposits)
 app.use('/api/contract', Contract)
 app.use('/api/trade', Trade)
 app.use('/api/wallet', Wallet)
+app.use('/api/action', Action)
+app.use('/api/trader', Trader)
 
 app.use(notFound)
 

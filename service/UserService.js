@@ -19,6 +19,7 @@ class UserService {
 
         const user = await UserModel.create(req.body)
         const token = user.createToken(process.env.registerExpTime)
+       console.log(token)
 
         const firstName = user.firstName
         const pin = user.send2FACode()
@@ -40,13 +41,14 @@ class UserService {
        }
 
         const user = await UserModel.create(req.body)
-       
+        const token = user.createToken(process.env.registerExpTime)
+
         //save referral
         const userId = req.params.userId
         const id = mongoose.Types.ObjectId(userId)
         await UserModel.findByIdAndUpdate(id, { '$addToSet': { referredUser: user._id } }, {new:true} )
         
-        const token = user.createToken(process.env.registerExpTime)
+        
         const firstName = user.firstName
         const pin = user.send2FACode()
         await user.save()
@@ -84,9 +86,6 @@ class UserService {
             return res.status(200).json({message:"TOKEN EXPIRED"})
         }
 
-        
-        const email = await Verified.create('completed')
-
         user.FACode = undefined
         user.FACodeExp = undefined
         user.isVerifiedAcct = true  
@@ -119,12 +118,12 @@ class UserService {
     }
 
     async completeLogin(req,res){
-        const {token} = req.body
+        const {pin, email} = req.body
         const user = await UserModel.findOne({
-            FACode:token,
-            FACodeExp:{ $gt: Date.now() }
+            FACode:pin,
+            FACodeExp:{$gt: Date.now()}
         })
-        
+
         if(!user){
             return res.status(200).json({message:"TOKEN EXPIRED"})
         }
@@ -134,6 +133,7 @@ class UserService {
         await user.save()
 
         const loginToken = user.createToken(process.env.loginExpTime)
+        //console.log(token)
         res.status(200).json({message:"USER LOGGED IN", user, loginToken})
     }
 
